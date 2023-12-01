@@ -82,10 +82,10 @@ pca.res.df4 <- pca.res$x[,1:4] %>%
   as_tibble() %>%
   add_column(sample = sampleLabels,
              group = group) 
-  pca.res.df4.rename <- rename(pca.res.df4, "PC1 (70.1%)" = "PC1", "PC2 (17.1%)" = "PC2", "PC3 (7.9%)" = "PC3", "PC4 (4.3%)" = "PC4") # Rename columns 'new = old' format
+  pca.res.df4.rename <- rename(pca.res.df4, "PC1 (76.9%)" = "PC1", "PC2 (17.3%)" = "PC2", "PC3 (3.2%)" = "PC3", "PC4 (1.8%)" = "PC4") # Rename columns 'new = old' format
 ?rename
 pca.pivot <- pivot_longer(pca.res.df4.rename, #Identify datafram to be pivoted
-                          cols = 'PC1 (70.1%)':'PC4 (4.3%)', #Column names to be stored as single variable
+                          cols = 'PC1 (76.9%)':'PC4 (1.8%)', #Column names to be stored as single variable
                           names_to = "PC", #Column name of that variable
                           values_to = "loadings") #Name of new column storing data values
 #labelsSM.PCA <- as.character(c(paste0("PC1 (",pc.per[1],"%",")"), paste0("PC2 (",pc.per[2],"%",")"), paste0("PC3 (",pc.per[3],"%",")"), paste0("PC4 (",pc.per[4],"%",")")))
@@ -98,6 +98,8 @@ ggplot(pca.pivot) +
   labs(title="PCA 'small multiples' plot",
        caption=paste0("produced on ", Sys.time())) +
   theme_bw() +
-  coord_flip()
+  coord_flip() 
+  
+ggsave("PCA.png")
 
 
