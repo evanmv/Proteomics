@@ -13,7 +13,7 @@ library(matrixStats)
 ## Read in excel file and tidy -----
 df <- read_excel("/Users/evanvallenari/Proteomics/proteinGroups_Olav_LMD_698-707-original.xlsx")
 df.select <- df %>% 
-  select(`Protein names`, `Gene names`, `Fasta headers`, contains('iBAQ'))
+  select(`Protein.names`, `Gene.names`, `Fasta.headers`, contains('LFQ'))
 #df.select.unite <- unite(df.select, 'iBAQ 1500', 'iBAQ 1507', 'iBAQ 1508', 'iBAQ 1509', 'iBAQ 1510', 'iBAQ 1511', 'iBAQ 1512', 'iBAQ 1513')
 df.select.pivot <- df.select %>% 
   pivot_longer(
@@ -39,9 +39,9 @@ library(gt)
 
 df.select
 df.select.matrix <- df.select %>% #Create data matrix from data frame
-  select(contains('iBAQ 1')) %>% #Select columns containing iBAQ values
+  select(contains('LFQ.')) %>% #Select columns containing iBAQ values
   data.matrix() #As data matrix
-  row.names(df.select.matrix) <- df.select$`Protein names` #w/ Protein names as row names
+  row.names(df.select.matrix) <- df.select$Protein.names #w/ Protein names as row names
 
 #Read in target data -- identify variables of interest
 targets <- read.delim("targets.txt")
