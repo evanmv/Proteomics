@@ -1,0 +1,9 @@
+sample	group
+1500	cancer far
+1507	cancer near
+1508	muscle far
+1509	muscle near
+1510	muscle far
+1511	muscle near
+1512	cancer far
+1513	muscle near
