@@ -39,7 +39,7 @@ library(gt)
 
 df.select
 df.select.matrix <- df.select %>% #Create data matrix from data frame
-  select(contains('LFQ.')) %>% #Select columns containing iBAQ values
+  select(contains('LFQ.')) %>% #Select columns containing LFQ values
   data.matrix() #As data matrix
   row.names(df.select.matrix) <- df.select$Protein.names #w/ Protein names as row names
 
@@ -52,6 +52,11 @@ distance <- dist(t(df.select.matrix), method = "euclidean")
 clusters <- hclust(distance, method = "single")
 plot(clusters)
 ?dist
+
+## W/ log2 normalized data
+distance <- dist(t(log2.data.matrix), method = "euclidean")
+clusters <- hclust(distance, method = "single")
+plot(clusters)
 
 #PCA
 df.select.NAomit.matrix <- na.omit(df.select.matrix) #prcomp cannot run with NA variables. na.omit omits all NAs
@@ -101,5 +106,4 @@ ggplot(pca.pivot) +
   coord_flip() 
   
 ggsave("PCA.png")
-
 
