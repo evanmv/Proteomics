@@ -73,7 +73,7 @@ ggplot(pca.res.df) + #Identify dataframe
 ggsave("Scaled_PCA_1v2.png")
 
 
-Small multiples PCA plot
+#Small multiples PCA plot
 pca.res.df2 <- pca.res$x[,1:4] %>% 
   as_tibble() %>%
   add_column(sample = sampleLabels,
